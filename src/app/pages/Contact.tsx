@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
 import { cn } from "@/lib/utils";
 
 const Contact = () => {

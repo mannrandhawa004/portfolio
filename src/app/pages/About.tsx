@@ -22,7 +22,7 @@ export default function AboutPage() {
 
         <div className="flex-1 space-y-6">
           <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white to-indigo-700/80 bg-clip-text text-transparent">
-            Hi, I'm Mann
+            {"Hi, I'm Mann"}
           </h1>
           <p className="text-gray-300 leading-relaxed">
             I build scalable, modern applications with a strong focus on clean architecture, delightful UX, and performance. My toolkit spans JavaScript, React,Node.js, Tailwind CSS, and RestfulAPI— bringing ideas to life from concept to production with robust APIs and smooth interfaces..
@@ -44,7 +44,7 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-      
+
     </section>
   )
 }

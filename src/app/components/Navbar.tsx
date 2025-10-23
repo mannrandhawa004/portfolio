@@ -26,7 +26,7 @@ const Navbar = ({ className }: { className?: string }) => {
 
                 <div className="flex items-center gap-2">
                     <span className="text-3xl font-bold text-white">
-                        Mann
+                        {"Mann"}
                     </span>
                 </div>
 
