@@ -1,10 +1,8 @@
 "use client";
 import React from "react";
-import { motion } from "motion/react";
+import { motion, type Transition } from "motion/react";
 
-
-
-const transition = {
+const transition: Transition = {
   type: "spring",
   mass: 0.5,
   damping: 11.5,
@@ -12,6 +10,7 @@ const transition = {
   restDelta: 0.001,
   restSpeed: 0.001,
 };
+
 
 export const MenuItem = ({
   setActive,
@@ -32,7 +31,8 @@ export const MenuItem = ({
       >
         {item}
       </motion.p>
-      {active !== null && !HoveredLink(
+
+      {active !== null && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -42,13 +42,10 @@ export const MenuItem = ({
             <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
               <motion.div
                 transition={transition}
-                layoutId="active" // layoutId ensures smooth animation
+                layoutId="active"
                 className="bg-black dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
               >
-                <motion.div
-                  layout // layout ensures smooth animation
-                  className="w-max h-full p-4 bg-black"
-                >
+                <motion.div layout className="w-max h-full p-4 bg-black">
                   {children}
                 </motion.div>
               </motion.div>
@@ -69,8 +66,8 @@ export const Menu = ({
 }) => {
   return (
     <nav
-      onMouseLeave={() => setActive(null)} // resets the state
-      className="relative rounded-full border dark:bg-black border-white/[0.2] bg-black shadow-input flex justify-center space-x-4 px-8 py-6 "
+      onMouseLeave={() => setActive(null)}
+      className="relative rounded-full border dark:bg-black border-white/[0.2] bg-black shadow-input flex justify-center space-x-4 px-8 py-6"
     >
       {children}
     </nav>
@@ -98,9 +95,7 @@ export const ProductItem = ({
         className="shrink-0 rounded-md shadow-2xl"
       />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
-          {title}
-        </h4>
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">{title}</h4>
         <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
           {description}
         </p>
@@ -109,12 +104,13 @@ export const ProductItem = ({
   );
 };
 
-export const HoveredLink = ({ children, ...rest }: any) => {
-  return (
-    <a
+interface HoveredLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  children: React.ReactNode;
+}
 
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black "
-    >
+export const HoveredLink: React.FC<HoveredLinkProps> = ({ children, ...rest }) => {
+  return (
+    <a {...rest} className="text-neutral-700 dark:text-neutral-200 hover:text-black">
       {children}
     </a>
   );
