@@ -56,7 +56,7 @@ const LaggingCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-4 h-4 bg-rose-400/60 rounded-full pointer-events-none z-50 shadow-lg"
+      className="fixed top-0 left-0 w-4 h-4 bg-indigo-400/60 rounded-full pointer-events-none z-50 shadow-lg"
       style={{ transformOrigin: 'center' }} // Ensure scaling happens from the center
     />
   )

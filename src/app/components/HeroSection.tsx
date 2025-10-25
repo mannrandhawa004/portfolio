@@ -12,7 +12,7 @@ const HeroSection = () => {
                 </div>
                 {/* heading */}
                 <div>
-                    <span className='text-zinc-200 text-3xl tracking-tighter line-clamp-1' >
+                    <span className='text-zinc-200 text-4xl tracking-tighter line-clamp-1 font-semibold' >
                         {"MERN Stack Developer"}
                     </span>
                 </div>
@@ -27,24 +27,24 @@ const HeroSection = () => {
                     </Link>
 
                     <button className="bg-transparent px-8 py-3 text-white border rounded-full cursor-pointer">
-                        <a href="/resume.pdf" download="Manpreet_Singh_Resume.pdf">
+                        <a href="/mann_resume.pdf" download="Manpreet_Singh_Resume.pdf">
                             My Resume
                         </a>
                     </button>
                 </div>
                 {/* links */}
-                <div className="flex items-center gap-4 mt-6">
+                <div className="flex items-center gap-4 mt-10">
 
-                    <Link href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
-                        <FaGithub className="w-6 h-6 text-white hover:text-gray-400  transition" />
+                    <Link href="https://github.com/mannrandhawa004" target="_blank" rel="noopener noreferrer">
+                        <FaGithub className=" text-white hover:text-gray-400  transition"  size={36}/>
                     </Link>
 
 
-                    <Link href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
-                        <FaLinkedin className="w-6 h-6 text-white hover:text-blue-500 transition" />
+                    <Link href="https://www.linkedin.com/in/manpreet-singh004" target="_blank" rel="noopener noreferrer">
+                        <FaLinkedin className=" text-white hover:text-blue-500 transition" size={36}/>
                     </Link>
-                    <Link href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer">
-                        <FaInstagram className="w-6 h-6 text-white hover:text-pink-500 transition" />
+                    <Link href="https://instagram.com/mann._04" target="_blank" rel="noopener noreferrer">
+                        <FaInstagram className=" text-white hover:text-pink-500 transition" size={36}/>
                     </Link>
                 </div>
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaGitAlt, FaPython } from 'react-icons/fa'
-import { SiMongodb, SiExpress, SiJavascript, SiTypescript, SiTailwindcss, SiMysql, SiRedux, SiMui ,SiRender} from 'react-icons/si'
-import { IoLogoVercel } from "react-icons/io5";
+import { SiMongodb, SiExpress, SiJavascript, SiTypescript, SiTailwindcss, SiMysql, SiRedux, SiMui ,SiRender,SiNetlify} from 'react-icons/si'
+import { IoLogoVercel} from "react-icons/io5";
 import { SparklesCore } from "../../components/ui/sparkles";
 const skills = [
   { name: 'HTML5', icon: <FaHtml5 className="text-orange-500" /> },
@@ -19,6 +19,7 @@ const skills = [
   { name: 'MUI', icon: <SiMui className="text-blue-500" /> },
   { name: 'Vercel', icon: <IoLogoVercel className="text-black" /> },
   { name: 'Render', icon: <SiRender className="text-white" /> },
+  { name: 'Netlify', icon: <SiNetlify className="text-cyan-400" /> }
 ]
 
 const Skills: React.FC = () => {

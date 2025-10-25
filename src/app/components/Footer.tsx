@@ -21,26 +21,30 @@ const Footer = () => {
         {/* Social Media Icons */}
         <div className="flex items-center gap-10 text-gray-200 mb-6">
           <motion.a
-            href="https://github.com/"
+            href="https://github.com/mannrandhawa004"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-gray-400  transition"
 
           >
             <FaGithub size={36} />
           </motion.a>
 
           <motion.a
-            href="https://linkedin.com/"
+            href="https://www.linkedin.com/in/manpreet-singh004"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-blue-500 transition"
+            
           >
             <FaLinkedin size={36} />
           </motion.a>
 
           <motion.a
-            href="https://instagram.com/"
+            href="https://instagram.com/mann._04"
             target="_blank"
             rel="noopener noreferrer"
+            className="hover:text-pink-500 transition"
           >
             <FaInstagram size={36} />
           </motion.a>

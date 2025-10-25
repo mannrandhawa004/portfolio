@@ -8,7 +8,7 @@ const DottedBackgound = () => {
                 className="pointer-events-none mask-radial-to-90% mask-radial-at-center z-[-2]"
                 opacity={1}
                 gap={10}
-                radius={1.5}
+                radius={2}
                 colorLightVar="#ffff"
                 glowColorLightVar="--color-neutral-100"
                 colorDarkVar="--color-neutral-400"
