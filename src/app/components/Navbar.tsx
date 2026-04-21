@@ -3,10 +3,28 @@ import React, { useEffect, useState } from "react"
 import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 
 const Navbar = ({ className }: { className?: string }) => {
     const [active, setActive] = useState<string | null>(null)
     const [time, setTime] = useState<string>("")
+    const { scrollY } = useScroll()
+    const [visible, setVisible] = useState(true)
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const previous = scrollY.getPrevious() ?? 0;
+        
+        if (latest <= 50) {
+            // Always show at the absolute top of the page
+            setVisible(true);
+        } else if (latest > previous && latest > 50) {
+            // Hide when scrolling down
+            setVisible(false);
+        } else {
+            // Show when scrolling up
+            setVisible(true);
+        }
+    })
 
     // ⏰ Update time every second
     useEffect(() => {
@@ -21,9 +39,13 @@ const Navbar = ({ className }: { className?: string }) => {
     }, [])
 
     return (
-        <div className="fixed top-5 inset-x-0 max-full mx-auto z-50">
-            <div className="max-w-6xl mx-auto flex items-center  px-6 py-4">
-
+        <motion.div 
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="fixed top-5 inset-x-0 max-full mx-auto z-50 pointer-events-none"
+        >
+            <div className="max-w-6xl mx-auto flex items-center px-6 py-4 pointer-events-auto">
                 <div className="flex items-center gap-2">
                     <span className="text-3xl font-bold text-white">
                         {"Mann"}
@@ -44,14 +66,12 @@ const Navbar = ({ className }: { className?: string }) => {
                         <Link href="/#contact" passHref>
                             <MenuItem setActive={setActive} active={active} item="Contact" />
                         </Link>
-                      
                     </Menu>
                 </div>
 
-
-                <div className="font-mono text-sm opacity-90 ">{time}</div>
+                <div className="font-mono text-sm opacity-90">{time}</div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
