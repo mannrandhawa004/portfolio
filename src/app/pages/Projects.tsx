@@ -234,18 +234,9 @@ const Projects: React.FC = () => {
                     <img
                       src={p.image}
                       alt={p.title}
-                      className="w-full h-full object-contain opacity-50 transition-opacity duration-500 group-hover:opacity-0"
+                      className="w-full h-full object-fit opacity-50"
                     />
-                    {p.video && (
-                      <video
-                        src={p.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-50"
-                      />
-                    )}
+
                   </div>
                 </div>
               </div>
