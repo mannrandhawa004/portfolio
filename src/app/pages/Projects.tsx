@@ -11,7 +11,8 @@ import {
   SiPostgresql,
   SiExpress,
   SiStripe,
-  SiGooglecloud
+  SiGooglecloud,
+  SiMongodb
 } from "react-icons/si";
 
 const techIcons: Record<string, JSX.Element> = {
@@ -23,7 +24,8 @@ const techIcons: Record<string, JSX.Element> = {
   PostgreSQL: <SiPostgresql size={20} />,
   Stripe: <SiStripe size={20} />,
   "Google Auth": <SiGooglecloud size={20} />,
-  "Express.js": <SiExpress />
+  "Express.js": <SiExpress />,
+  "MongoDB": <SiMongodb />
 };
 
 const Projects: React.FC = () => {
@@ -32,42 +34,51 @@ const Projects: React.FC = () => {
   const projectRefs = useRef<HTMLDivElement[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const scrollAccumulator = useRef(0);
-  const lastScrollTime = useRef(Date.now());
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const allowPageScroll = useRef(false);
+
 
   const projects = [
     {
       id: 1,
-      title: "Url Shortner",
-      description:
-        "Built a full-stack URL shortener with JWT auth, RESTful APIs, click analytics, and responsive UI using React, Node.js, Express, MongoDB, Tailwind, and Redux Toolkit.",
-      image: "/url1.png",
-      tech: ["React", "Node.js", "Express.js", "Tailwind"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/yourusername/crypto-dashboard"
+      title: "Scatch",
+      description: "A comprehensive full-stack e-commerce platform designed for seamless shopping experiences. Features robust JWT & Google OAuth authentication, secure Stripe payment integration, and real-time inventory synchronization. Includes advanced role-based access control, allowing admins to efficiently manage products, orders, and user carts while providing customers with instant email notifications and a beautifully responsive UI.",
+      image: "/Scatch.png",
+      video: "",
+      tech: ["React", "Node.js", "Express.js", "Tailwind", "Stripe", "Google Auth", "MongoDB"],
+      liveUrl: "https://scatch-bice.vercel.app/",
+      githubUrl: "https://github.com/mannrandhawa004/scatch"
     },
     {
       id: 2,
-      title: "Scatch",
-      description:
-        "Built a full-stack e-commerce platform with JWT & Google OAuth authentication, Stripe payments, role-based access, and live inventory sync. Implemented cart, product, and order management with email alerts and a responsive React + Tailwind UI",
-      image: "/Scatch.png",
-      tech: ["React", "Node.js", "Express.js", "Tailwind", "Stripe", "Google Auth"],
-      liveUrl: "https://scatch-bice.vercel.app/",
-      githubUrl: "https://github.com/yourusername/crypto-dashboard"
+      title: "ochi.design",
+      description: "An interactive, visually striking front-end application focused on modern web design principles. Built primarily with React and deeply integrated with GSAP to deliver complex, high-performance scroll-based animations. The project demonstrates advanced DOM manipulation, custom cursor interactions, and fluid page transitions, creating an engaging and highly polished user experience from start to finish.",
+      image: "/ochi.png",
+      video: "",
+      tech: ["React", "Tailwind", "GSAP", "Locomotive"],
+      liveUrl: "https://designochi.vercel.app/",
+      githubUrl: "https://github.com/yourusername`/crypto-dashboard"
     },
     {
       id: 3,
-      title: "ochi.design",
-      description: "Interactive animated application using GSAP and React for scroll-based transitions.",
-      image: "/ochi.png",
-      tech: ["React", "Tailwind", "GSAP", "Locomotive"],
-      liveUrl: "https://designochi.vercel.app/",
-      githubUrl: "https://github.com/yourusername/crypto-dashboard"
+      title: "AI Resume Builder",
+      description: "A powerful, dynamic resume creation tool engineered to help users build professional CVs effortlessly. Features a highly interactive real-time preview interface and instant client-side PDF generation without server-side rendering delays. Integrated with ImageKit for optimized, lightning-fast cloud storage of user assets, all wrapped in a sleek, responsive design powered by Tailwind CSS.",
+      image: "/ai_resume.png",
+      video: "",
+      tech: ["React", "Tailwind", "GSAP", "Redux", "Node.js", "Express.js", "MongoDB"],
+      liveUrl: "https://ai-resume-builder-beta-pink.vercel.app/",
+      githubUrl: "https://github.com/mannrandhawa004/ai-resume-builder"
+    },
+    {
+      id: 4,
+      title: "StarSync",
+      description: "A feature-rich MERN-stack SaaS platform tailored for astrology consultations and services. Seamlessly integrates LiveKit to provide high-quality, real-time video streaming for one-on-one astrological readings. Features a secure, Stripe-powered digital wallet system for managing user balances and transactions, complete with an intuitive dashboard for both astrologers and clients to track appointments and history.",
+      image: "/astro.png",
+      video: "",
+      tech: ["React", "Node.js", "MongoDB", "Express.js", "LiveKit", "Stripe", "Tailwind"],
+      liveUrl: "https://astro-lilac-chi.vercel.app/",
+      githubUrl: "https://github.com/mannrandhawa004/astro"
     }
   ];
+
 
   useEffect(() => {
     projectRefs.current.forEach((project, i) => {
@@ -84,7 +95,6 @@ const Projects: React.FC = () => {
       if (newIndex < 0 || newIndex >= projects.length) return;
 
       setIsAnimating(true);
-      allowPageScroll.current = false;
       const currentEl = projectRefs.current[currentProject];
       const nextEl = projectRefs.current[newIndex];
       if (!currentEl || !nextEl) return;
@@ -93,16 +103,14 @@ const Projects: React.FC = () => {
 
       currentEl.style.transition = "all 0.8s cubic-bezier(0.65, 0, 0.35, 1)";
       currentEl.style.opacity = "0";
-      currentEl.style.transform = `scale(0.9) translateY(${isDown ? "-120px" : "120px"}) rotateX(${
-        isDown ? "20deg" : "-20deg"
-      })`;
+      currentEl.style.transform = `scale(0.9) translateY(${isDown ? "-120px" : "120px"}) rotateX(${isDown ? "20deg" : "-20deg"
+        })`;
       currentEl.style.zIndex = "1";
 
       nextEl.style.transition = "none";
       nextEl.style.opacity = "0";
-      nextEl.style.transform = `scale(0.9) translateY(${isDown ? "120px" : "-120px"}) rotateX(${
-        isDown ? "-20deg" : "20deg"
-      })`;
+      nextEl.style.transform = `scale(0.9) translateY(${isDown ? "120px" : "-120px"}) rotateX(${isDown ? "-20deg" : "20deg"
+        })`;
       nextEl.style.zIndex = "2";
 
       setTimeout(() => {
@@ -111,9 +119,6 @@ const Projects: React.FC = () => {
         nextEl.style.transform = "scale(1) translateY(0) rotateX(0deg)";
         setTimeout(() => {
           setIsAnimating(false);
-          if (newIndex === projects.length - 1) {
-            allowPageScroll.current = true;
-          }
         }, 1000);
       }, 80);
 
@@ -122,57 +127,7 @@ const Projects: React.FC = () => {
     [currentProject, projects.length]
   );
 
-  // ✅ Properly typed wheel event
-  const handleWheel = useCallback(
-    (e: React.WheelEvent<HTMLDivElement>) => {
-      if (currentProject === projects.length - 1 && e.deltaY > 0 && allowPageScroll.current) {
-        return;
-      }
-      if (currentProject === 0 && e.deltaY < 0) {
-        return;
-      }
 
-      if (isAnimating) {
-        e.preventDefault();
-        return;
-      }
-
-      e.preventDefault();
-
-      const now = Date.now();
-      const timeDelta = now - lastScrollTime.current;
-      lastScrollTime.current = now;
-
-      const normalizedDelta = e.deltaY;
-      const velocityFactor = Math.min(timeDelta / 16, 1);
-      scrollAccumulator.current += normalizedDelta * velocityFactor;
-
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-
-      const baseThreshold = 100;
-      const speedMultiplier = timeDelta < 50 ? 1.5 : 1;
-      const threshold = baseThreshold * speedMultiplier;
-
-      if (Math.abs(scrollAccumulator.current) >= threshold) {
-        const direction = scrollAccumulator.current > 0 ? "down" : "up";
-        const newIndex = direction === "down" ? currentProject + 1 : currentProject - 1;
-
-        if (newIndex >= 0 && newIndex < projects.length) {
-          animateToProject(newIndex, direction);
-          scrollAccumulator.current = 0;
-        } else {
-          scrollAccumulator.current = 0;
-        }
-      } else {
-        scrollTimeoutRef.current = setTimeout(() => {
-          scrollAccumulator.current = 0;
-        }, 200);
-      }
-    },
-    [isAnimating, currentProject, projects.length, animateToProject]
-  );
 
   const handlePagination = useCallback(
     (type: "next" | "prev") => {
@@ -208,35 +163,7 @@ const Projects: React.FC = () => {
     return () => window.removeEventListener("keydown", handleKey);
   }, [isAnimating, currentProject, projects.length, handlePagination]);
 
-  // ✅ Properly typed touch events
-  const touchStartY = useRef(0);
 
-  const handleTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartY.current = e.touches[0].clientY;
-  }, []);
-
-  const handleTouchEnd = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
-      if (isAnimating) return;
-      const touchEndY = e.changedTouches[0].clientY;
-      const diff = touchStartY.current - touchEndY;
-
-      if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentProject < projects.length - 1) {
-          handlePagination("next");
-        } else if (diff < 0 && currentProject > 0) {
-          handlePagination("prev");
-        }
-      }
-    },
-    [isAnimating, currentProject, projects.length, handlePagination]
-  );
-
-  useEffect(() => {
-    if (currentProject !== projects.length - 1) {
-      allowPageScroll.current = false;
-    }
-  }, [currentProject, projects.length]);
 
   const progress = ((currentProject + 1) / projects.length) * 100;
 
@@ -244,9 +171,6 @@ const Projects: React.FC = () => {
     <div
       id="work"
       ref={containerRef}
-      onWheel={handleWheel}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
       className="min-h-screen bg-black text-gray-100 overflow-hidden relative select-none"
     >
       <div className="relative z-10 min-h-screen flex flex-col">
@@ -258,17 +182,12 @@ const Projects: React.FC = () => {
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8 italic font-light">
             Explore my curated collection of projects
           </p>
-          {currentProject === 0 && (
-            <div className="mt-8 flex flex-col items-center animate-pulse">
-              <ChevronDown className="text-indigo-400" size={32} />
-              <span className="text-sm text-gray-400 mt-2">Scroll to discover</span>
-            </div>
-          )}
+
         </div>
 
         {/* Projects */}
-        <div className="flex-1 flex items-center justify-center px-4 md:px-8 py-12 relative">
-          <div className="max-w-7xl w-[85vw] h-[500px] relative" style={{ perspective: "1400px" }}>
+        <div className="flex-1 flex items-center justify-center px-4 md:px-8 py-12 relative cursor-pointer">
+          <div className="max-w-7xl w-[90vw] h-[550px] relative" style={{ perspective: "1400px" }}>
             {projects.map((p, i) => (
               <div
                 key={p.id}
@@ -280,7 +199,7 @@ const Projects: React.FC = () => {
                   pointerEvents: currentProject === i ? "auto" : "none"
                 }}
               >
-                <div className="bg-black backdrop-blur-3xl border rounded-3xl overflow-hidden h-full w-full shadow-xl flex flex-col items-center justify-center p-8 md:p-10 transition-all">
+                <div className="group bg-black backdrop-blur-3xl rounded-xl overflow-hidden h-full w-full shadow-xl flex flex-col items-center justify-center p-8 md:p-10 transition-all">
                   <div className="absolute z-10 mt-6 left-4 bottom-3">
                     <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-md mb-2">
                       {p.title}
@@ -315,8 +234,18 @@ const Projects: React.FC = () => {
                     <img
                       src={p.image}
                       alt={p.title}
-                      className="w-full h-full object-cover opacity-50 transition-opacity"
+                      className="w-full h-full object-contain opacity-50 transition-opacity duration-500 group-hover:opacity-0"
                     />
+                    {p.video && (
+                      <video
+                        src={p.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-50"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -329,18 +258,16 @@ const Projects: React.FC = () => {
           <button
             onClick={() => handlePagination("prev")}
             disabled={currentProject === 0}
-            className={`flex items-center gap-2 px-5 py-2 rounded-full font-semibold border border-gray-600 transition-all hover:bg-white hover:text-black ${
-              currentProject === 0 ? "opacity-40 cursor-not-allowed" : ""
-            }`}
+            className={`flex items-center gap-2 px-5 py-2 rounded-full font-semibold border border-gray-600 transition-all hover:bg-white hover:text-black ${currentProject === 0 ? "opacity-40 cursor-not-allowed" : ""
+              }`}
           >
             <ChevronLeft size={18} /> Prev
           </button>
           <button
             onClick={() => handlePagination("next")}
             disabled={currentProject === projects.length - 1}
-            className={`flex items-center gap-2 px-5 py-2 rounded-full font-semibold border border-gray-600 transition-all hover:bg-white hover:text-black ${
-              currentProject === projects.length - 1 ? "opacity-40 cursor-not-allowed" : ""
-            }`}
+            className={`flex items-center gap-2 px-5 py-2 rounded-full font-semibold border border-gray-600 transition-all hover:bg-white hover:text-black ${currentProject === projects.length - 1 ? "opacity-40 cursor-not-allowed" : ""
+              }`}
           >
             Next <ChevronRight size={18} />
           </button>
@@ -353,12 +280,7 @@ const Projects: React.FC = () => {
           </div>
         </div>
 
-        {currentProject === projects.length - 1 && (
-          <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
-            <span className="text-sm text-gray-400 mb-2">Continue scrolling</span>
-            <ChevronDown className="text-indigo-400" size={28} />
-          </div>
-        )}
+
 
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-800/60 overflow-hidden">
           <div
